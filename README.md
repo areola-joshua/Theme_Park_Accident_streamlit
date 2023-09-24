@@ -4,7 +4,7 @@
 
 ## Overview
 
-The purpose of this project is to build a system that uses Semantic Web and Linked Data technologies to analyze accidents occurred in theme parks in the United States. The original Excel dataset can be found on the Saferparks Dataset page. This dataset will be split and modified so that it can be loaded into a Third Normal Form (3FN) PostgreSQL database using PSQL, and converted into the RDF format using the Ontop tool. A final webapp is presented to the user. The app is built with Streamlit and includes several charts and parametric queries. 
+The purpose of this project is to build a system that uses Semantic Web and Linked Data technologies to analyze accidents that occurred in theme parks in the United States. The original Excel dataset can be found on the Saferparks Dataset page. This dataset will be split and modified so that it can be loaded into a Third Normal Form (3FN) PostgreSQL database using PSQL and converted into the RDF format using the Ontop tool. A final web app is presented to the user. The app is built with Streamlit and includes several charts and parametric queries. 
 
 The following image depicts the system architecture and all the components:
 
@@ -41,15 +41,11 @@ explained in the following sections
 
 ### Data Preparation
 
-To prepare the data, I used a Jupyter Notebook. In particular, I used the Pandas library to split the dataset into different tables while maintaining referential constraints. The purpose is to export CSV tables ready to be loaded into a PostgreSQL database. The Third Normal Form (3FN) should be respected. The notebook with all the operations is contained in the project repository at *data/data_preparation.ipynb*. The tables exported to CSV are also present in the *data/prepared_data* folder.
+To prepare the data, I used a Jupyter Notebook. In particular, I used the Pandas library to split the dataset into different tables while maintaining referential constraints. The purpose is to export CSV tables ready to be loaded into a PostgreSQL database. The Third Normal Form (3FN) should be respected. The tables exported to CSV are also present in the *data/prepared_data* folder.
 
 ### Database Creation & Population
 
-The mapping functionality provided by the Ontop tool requires data to be in a relational database. For this purpose, I created a custom PostgreSQL database with all the required tables and constraints. Database tables are created using the SQL DDL language. The PSQL tools is used to populate the tables uploading data from the CSV tables generated during the *Data Preparation* step.
-
-The following figure represents the database schema:
-
-<img src="./img/accident_db.png">
+The mapping functionality provided by the Ontop tool requires data to be in a relational database. For this purpose, I created a custom PostgreSQL database with all the required tables and constraints. Database tables are created using the SQL DDL language. The PSQL tools are used to populate the tables uploading data from the CSV tables generated during the *Data Preparation* step.
 
 
 ### Mapping & Materializing the RDF
@@ -59,15 +55,14 @@ After loading the data into the dataset, I used the Ontop tool to generate the R
 
 ## Running the Application
 
-A running version of the application is [hosted on my Huggingface](https://huggingface.co/spaces/EdBianchi/ThemeParksAccidents_RDF-SPARQL).
 
-Alternatively, one can run the application locally. In this case, please note that the proposed Command Line Interface (CLI) commands may vary depending on the platform used.This application was developed and tested is osx-arm64 and it may be necessary to install / remove additional libraries to make the application work on other platforms.
+One can run the application locally. In this case, please note that the proposed Command Line Interface (CLI) commands may vary depending on the platform used. This application was developed and tested in osx-arm64 and it may be necessary to install/remove additional libraries to make the application work on other platforms.
 
-* The first step is to run the app locally, is clone this repository and make sure to have all the requisites necessary to use the application. To simplify this operation we can create a new virtual environment and install the required libraries. The `conda_env.txt` file contains all the required libraries in a format that is ready to install in an Anaconda Virtual Environment.
+* The first step is to run the app locally, clone this repository, and make sure to have all the requisites necessary to use the application. To simplify this operation we can create a new virtual environment and install the required libraries. The `conda_env.txt` file contains all the required libraries in a format that is ready to install in an Anaconda Virtual Environment.
 
 This operation can be done from the Command Line Interface (CLI) with the following command:
 ```bash
-# navigate to the cloned folder
+# Navigate to the cloned folder
 $ conda create --name my-env --file conda_env.txt
 $ conda activate my-env
 ```
@@ -88,11 +83,11 @@ The basic structure has eight sections, six of which are visualizations. Specifi
 
 * **Accident Monthly Analysis**: Represents the months with the highest number of accidents.
 * **Accidents Geographic Analysis**: Represents states and cities where more accidents occur.
-* **Description of Accidents occurred on a Particular Ride**: This parametric query allows the user to select a ride from a list of rides and returns a variable number of accidents occurred on that ride. The number of results is selected using a slider.
+* **Description of Accidents that occurred on a Particular Ride**: This parametric query allows the user to select a ride from a list of rides and returns a variable number of accidents that occurred on that ride. The number of results is selected using a slider.
 * **Most Common Accidents**: Represents the most common types of accidents.
 * **Most Dangerous Ride Categories**: Represents the categories of rides on which the most accidents occur.
 * **Most Dangerous Ride Types**: Represents the types of rides on which the most accidents occur.
-* **People Involved in Accidents**: Represents the number of injured people that are generally involved in an accident.
+* **People Involved in Accidents**: This represents the number of injured people that are generally involved in an accident.
 * **Customizable Query**: Allows the user to type in a personalized query and see the results in a tabular format.
 
 
