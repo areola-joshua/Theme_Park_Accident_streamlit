@@ -1,7 +1,5 @@
 # Theme Park Ride Accidents Analysis
 
-<img src="./img/overview.png">
-
 ## Overview
 
 The purpose of this project is to build a system that uses Semantic Web and Linked Data technologies to analyze accidents that occurred in theme parks in the United States. The original Excel dataset can be found on the Saferparks Dataset page. This dataset will be split and modified so that it can be loaded into a Third Normal Form (3FN) PostgreSQL database using PSQL and converted into the RDF format using the Ontop tool. A final web app is presented to the user. The app is built with Streamlit and includes several charts and parametric queries. 
